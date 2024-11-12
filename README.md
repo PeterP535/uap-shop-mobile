@@ -4,6 +4,7 @@ Kelas: PBP B
 
 
 [Tugas 7](#tugas-7)
+[Tugas 8](#tugas-8)
 # Tugas 7
 
 ## Stateless Widget dan Stateful Widget
@@ -46,3 +47,117 @@ Berikut cara saya mengimplementasikan checklist yang diberikan:
 
 
 
+
+# Tugas 8
+## 1. Kegunaan const di Flutter
+const digunakan untuk membuat objek yang bersifat immutable (tidak dapat diubah) dan constant pada saat compile-time. Dalam Flutter, const sering digunakan untuk meningkatkan performa aplikasi dengan menghindari pembuatan ulang widget yang tidak berubah.
+
+### Keuntungan menggunakan const:
+- Efisiensi memori: Objek const hanya dibuat sekali dan dapat digunakan di mana saja tanpa alokasi memori baru.
+- Optimalisasi performa: Flutter dapat menghindari rendering ulang untuk widget const karena mereka dijamin tidak akan berubah.
+- Penghindaran bug: Dengan const, kita memastikan bahwa nilai tidak dapat dimodifikasi setelah dideklarasikan.
+### Kapan menggunakan const:
+- Gunakan const jika widget atau nilai tidak akan berubah selama siklus hidup aplikasi.
+- Contoh: teks statis, ikon, atau dekorasi widget.
+### Kapan tidak menggunakan const:
+- Jika nilai atau widget akan berubah secara dinamis berdasarkan input atau logika aplikasi.
+
+## Perbandingan Column dan Row pada Flutter
+Column dan Row adalah widget layout yang digunakan untuk menyusun widget secara vertikal (Column) atau horizontal (Row).
+
+### Column
+- Orientasi: Vertikal.
+- Kegunaan: Untuk menyusun widget secara vertikal, satu di atas yang lain.
+- Properti utama:
+- - mainAxisAlignment: Mengatur penyelarasan pada sumbu utama (vertikal).
+- - crossAxisAlignment: Mengatur penyelarasan pada sumbu silang (horizontal).
+- Contoh Column:
+```dart
+@Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text('Item 1'),
+    Text('Item 2'),
+    Text('Item 3'),
+  ],
+)
+```
+### Row
+- Orientasi: Horizontal.
+- Kegunaan: Untuk menyusun widget secara horizontal, satu di samping yang lain.
+- Properti utama:
+- - mainAxisAlignment: Mengatur penyelarasan pada sumbu utama (horizontal).
+- - crossAxisAlignment: Mengatur penyelarasan pada sumbu silang (vertikal).
+- Contoh Row:
+```dart
+@Row(
+mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+        Icon(Icons.home),
+        Icon(Icons.search),
+        Icon(Icons.settings),
+    ],
+)
+```
+## Elemen Input pada Halaman Form
+### Elemen input yang digunakan:
+TextFormField: Untuk menerima input teks seperti nama, jumlah, dan deskripsi.
+
+Contoh:
+
+```dart
+
+@TextFormField(
+decoration: InputDecoration(labelText: "Name"),
+)
+```
+### Elemen input Flutter yang tidak digunakan:
+1. Checkbox: Untuk menerima input berupa nilai boolean (true/false).
+2. Radio: Untuk memilih satu opsi dari beberapa pilihan.
+3. Switch: Untuk mengaktifkan/mematikan fitur (boolean).
+4. DropdownButton: Untuk memilih satu opsi dari daftar dropdown.
+5. Slider: Untuk memilih nilai dalam rentang tertentu.
+6. DatePicker: Untuk memilih tanggal.
+### Penjelasan:
+Elemen input lain seperti Checkbox atau DropdownButton tidak digunakan karena tidak relevan untuk tugas kali ini (form hanya memerlukan teks input).
+
+
+## Mengatur Tema (Theme) pada Flutter
+### Cara mengatur tema dalam Flutter:
+   Flutter memiliki fitur ThemeData untuk mengatur tema global aplikasi, termasuk warna, teks, dan gaya widget lainnya.
+
+### Apakah saya mengimplementasikan tema?
+Pada aplikasi yang dibuat, tema sudah diatur menggunakan properti ThemeData pada MaterialApp. Warna default aplikasi menggunakan ColorScheme untuk konsistensi.
+
+
+
+## Menangani Navigasi dalam Aplikasi Flutter
+### Cara menangani navigasi:
+Navigasi dasar dengan Navigator: Gunakan Navigator.push untuk berpindah ke halaman baru.
+
+```dart
+
+@Navigator.push(
+context,
+MaterialPageRoute(builder: (context) => NewPage()),
+)
+```
+### Navigasi dengan routes di MaterialApp: Tentukan rute di MaterialApp untuk navigasi yang lebih terorganisir.
+
+```dart
+
+@MaterialApp(
+routes: {
+'/': (context) => HomePage(),
+'/add-item': (context) => AddItemForm(),
+},
+)
+```
+Navigasi ke halaman:
+
+```dart
+Navigator.pushNamed(context, '/add-item');
+```
+### Navigasi dengan state management: 
+Untuk aplikasi kompleks, gunakan state management seperti Provider atau Riverpod untuk navigasi terintegrasi dengan logika aplikasi.
